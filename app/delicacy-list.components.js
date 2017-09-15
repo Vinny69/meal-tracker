@@ -10,48 +10,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("angular2/core");
-var meal_component_1 = require("./meal.component");
-var new_meal_component_1 = require("./new-meal.component");
+var delicacy_component_1 = require("./delicacy.component");
+var new_delicacy_component_1 = require("./new-delicacy.component");
 var calories_pipe_1 = require("./calories.pipe");
-var edit_meal_details_component_1 = require("./edit-meal-details.component");
-var MealListComponent = /** @class */ (function () {
-    function MealListComponent() {
-        this.mealList = [];
+var edit_delicacy_details_component_1 = require("./edit-delicacy-details.component");
+var DelicacyListComponent = /** @class */ (function () {
+    function DelicacyListComponent() {
+        this.delicacyList = [];
         this.filter = "all";
-        this.onMealSelect = new core_1.EventEmitter();
+        this.onDelicacySelect = new core_1.EventEmitter();
     }
-    MealListComponent.prototype.mealClicked = function (clickedMeal) {
-        console.log('child', clickedMeal);
-        this.selectedMeal = clickedMeal;
-        this.onMealSelect.emit(clickedMeal);
+    DelicacyListComponent.prototype.delicacyClicked = function (clickedDelicacy) {
+        console.log('child', clickedDelicacy);
+        this.selectedDelicacy = clickedDelicacy;
+        this.onDelicacySelect.emit(clickedDelicacy);
     };
-    MealListComponent.prototype.createMeal = function (newMeal) {
-        this.mealList.push(newMeal);
+    DelicacyListComponent.prototype.createDelicacy = function (newDelicacy) {
+        this.delicacyList.push(newDelicacy);
     };
-    MealListComponent.prototype.onChange = function (option) {
+    DelicacyListComponent.prototype.onChange = function (option) {
         this.filter = option;
         console.log(this.filter);
     };
-    MealListComponent.prototype.refreshMeal = function (newMeal) {
-        for (var _i = 0, _a = this.mealList; _i < _a.length; _i++) {
-            var meal = _a[_i];
-            if (meal.name === newMeal.name) {
-                meal.calories = newMeal.calories;
+    DelicacyListComponent.prototype.refreshDelicacy = function (newDelicacy) {
+        for (var _i = 0, _a = this.delicacyList; _i < _a.length; _i++) {
+            var delicacy = _a[_i];
+            if (delicacy.name === newDelicacy.name) {
+                delicacy.calories = newDelicacy.calories;
             }
         }
     };
-    MealListComponent = __decorate([
+    DelicacyListComponent = __decorate([
         core_1.Component({
-            selector: 'meal-list',
-            inputs: ['mealList'],
-            outputs: ['onMealSelect'],
+            selector: 'delicacy-list',
+            inputs: ['delicacyList'],
+            outputs: ['onDelicacySelect'],
             pipes: [calories_pipe_1.HealthyRatingPipe],
-            directives: [meal_component_1.MealComponent, new_meal_component_1.NewMealComponent, edit_meal_details_component_1.EditMealDetailsComponent],
-            templateUrl: 'app/meal-list.component.html'
+            directives: [delicacy_component_1.DelicacyComponent, new_delicacy_component_1.NewDelicacyComponent, edit_delicacy_details_component_1.EditDelicacyDetailsComponent],
+            templateUrl: 'app/delicacy-list.component.html'
         }),
         __metadata("design:paramtypes", [])
-    ], MealListComponent);
-    return MealListComponent;
+    ], DelicacyListComponent);
+    return DelicacyListComponent;
 }());
-exports.MealListComponent = MealListComponent;
+exports.DelicacyListComponent = DelicacyListComponent;
 //# sourceMappingURL=delicacy-list.components.js.map
