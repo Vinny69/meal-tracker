@@ -1,42 +1,42 @@
 import { Component, EventEmitter } from 'angular2/core';
-import { MealComponent } from './meal.component';
-import { NewMealComponent } from './new-meal.component';
-import { Meal } from './meal.model';
+import { DelicacyComponent } from './delicacy.component';
+import { NewDelicacyComponent } from './new-delicacy.component';
+import { Delicacy } from './delicacy.model';
 import { HealthyRatingPipe } from './calories.pipe';
-import { EditMealDetailsComponent } from './edit-meal-details.component';
+import { EditDelicacyDetailsComponent } from './edit-delicacy-details.component';
 
 @Component({
-  selector: 'meal-list',
-  inputs: ['mealList'],
-  outputs: ['onMealSelect'],
+  selector: 'delicacy-list',
+  inputs: ['delicacyList'],
+  outputs: ['onDelicacySelect'],
   pipes: [ HealthyRatingPipe ],
-  directives: [MealComponent, NewMealComponent, EditMealDetailsComponent],
-  templateUrl: 'app/meal-list.component.html'
+  directives: [DelicacyComponent, NewDelicacyComponent, EditDelicacyDetailsComponent],
+  templateUrl: 'app/delicacy-list.component.html'
 })
-export class MealListComponent {
-  public mealList: Meal[] = [];
-  public onMealSelect: EventEmitter<Meal>;
-  public selectedMeal: Meal;
+export class DelicacyListComponent {
+  public delicacyList: Delicacy[] = [];
+  public onDelicacySelect: EventEmitter<Delicacy>;
+  public selectedDelicacy: Delicacy;
   public filter: string = "all";
   constructor() {
-    this.onMealSelect = new EventEmitter();
+    this.onDelicacySelect = new EventEmitter();
   }
-  mealClicked(clickedMeal: Meal): void {
-    console.log('child', clickedMeal);
-    this.selectedMeal = clickedMeal;
-    this.onMealSelect.emit(clickedMeal);
+  delicacyClicked(clickedDelicacy: Delicacy): void {
+    console.log('child', clickedDelicacy);
+    this.selectedDelicacy = clickedDelicacy;
+    this.onDelicacySelect.emit(clickedDelicacy);
   }
-  createMeal(newMeal): void {
-    this.mealList.push(newMeal);
+  createDelicacy(newDelicacy): void {
+    this.delicacyList.push(newDelicacy);
   }
   onChange(option) {
     this.filter = option;
     console.log(this.filter);
   }
-  refreshMeal(newMeal: Meal) {
-    for(var meal of this.mealList) {
-      if(meal.name === newMeal.name) {
-        meal.calories = newMeal.calories;
+  refreshDelicacy(newDelicacy: Delicacy) {
+    for(var delicacy of this.delicacyList) {
+      if(delicacy.name === newDelicacy.name) {
+        delicacy.calories = newDelicacy.calories;
       }
     }
   }
