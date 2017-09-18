@@ -1,23 +1,18 @@
 import { Pipe, PipeTransform } from 'angular2/core';
-import { Delicacy } from './delicacy.model.model';
+import { Meal } from './meal.model';
 
 @Pipe({
-  name: 'healthyRating',
+  name: 'caloriePipe',
   pure: false
 })
-export class HealthyRatingPipe implements PipeTransform {
-  transform(input: Delicacy[], args) {
-    var desiredHealthyRating = args[0];
-    if (desiredHealthyRating === "unhealthy") {
-      return input.filter((delicacy) => {
-        return delicacy.calories > 300;
-      });
-    } else if (desiredHealthyRating === "healthy") {
-      return input.filter((delicacy) => {
-        return delicacy.calories <= 300;
-      });
-    } else {
-      return input;
-    }
+
+export class caloriePipe implements PipeTransform {
+  transform(input: Meal[], args) {
+    var minOrMax: string = args[0];
+    var calorieFilter: number = args[1];
+
+    if (minOrMax === "All") return input;
+    if (minOrMax === "Min.") return input.filter((meal) => (meal.totalCal >= calorieFilter));
+    if (minOrMax === "Max.") return input.filter((meal) => (meal.totalCal <= calorieFilter));
   }
 }
